@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="src/p5.js"></script>
+    <script src="src/dna.js"></script>
+    <script src="src/population.js"></script>
+    <script src="src/rocket.js"></script>
+    <title>Smart Rockets</title>
+  </head>
+  <body>
+    <div id="canvas"></div>
+    <div class="playback">
+      <button class="start-button btn">Start</button>
+      <button class="play-pause-button btn">Pause</button>
+      <button class="reset-button btn">Reset</button>
+    </div>
+    <div class="controls">
+      <div class="slider-line">
+        <div class="slider-title">
+          Number of rockets:
+          <div class="slider-value" id="elements-value">0</div>
+        </div>
+        <input type="range" min="1" max="100" class="slider" id="elements-slider" />
+      </div>
+    </div>
+    <div class="info">
+      <div class="count">Frames: 0</div>
+      <div class="generation">Generation: 0</div>
+      <div class="max-fit">Maximum fitness: 0</div>
+    </div>
+    <script src="src/main.js"></script>
+  </body>
+</html>

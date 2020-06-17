@@ -2,9 +2,9 @@ const canvasContainer = document.querySelector(".canvas");
 const countText = document.querySelector(".count");
 const generationText = document.querySelector(".generation");
 const maxFit = document.querySelector(".max-fit");
-const startButton = document.querySelector(".start-button");
-const playPauseButton = document.querySelector(".play-pause-button");
-const resetButton = document.querySelector(".reset-button");
+const playButton = document.querySelector("#play-button");
+const pauseButton = document.querySelector("#pause-button");
+const stopButton = document.querySelector("#stop-button");
 const elementsValue = document.querySelector("#elements-value");
 const elementsSlider = document.querySelector("#elements-slider");
 
@@ -100,25 +100,24 @@ function onCanvasMouseReleased() {
   obstacles.push(currRect);
 }
 
-startButton.addEventListener("click", () => {
+playButton.addEventListener("click", () => {
   started = true;
   playing = true;
   loop();
+  accentPlaybackButton(playButton);
 });
 
-playPauseButton.addEventListener("click", () => {
-  playing = !playing;
+pauseButton.addEventListener("click", () => {
   if (playing) {
-    loop();
-    playPauseButton.textContent = "Pause";
-  } else {
+    playing = false;
     noLoop();
-    playPauseButton.textContent = "Play";
   }
+  accentPlaybackButton(pauseButton);
 });
 
-resetButton.addEventListener("click", () => {
-  resetState({ keepPlaying: true });
+stopButton.addEventListener("click", () => {
+  resetState({ keepPlaying: false });
+  accentPlaybackButton(stopButton);
 });
 
 elementsSlider.addEventListener("input", (e) => {
@@ -128,3 +127,14 @@ elementsSlider.addEventListener("change", (e) => {
   populationSize = e.target.value;
   resetState({ keepPlaying: true, resetObstacles: false });
 });
+
+function accentPlaybackButton(button) {
+  const playbackButtons = [playButton, pauseButton, stopButton];
+  playbackButtons.forEach((playbackButton) => {
+    if (playbackButton === button) {
+      playbackButton.classList.add("accent-svg");
+    } else {
+      playbackButton.classList.remove("accent-svg");
+    }
+  });
+}

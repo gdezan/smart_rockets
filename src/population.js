@@ -51,20 +51,8 @@ class Population {
         return this.elements[i].dna;
       }
     }
-    let index;
-    let count = 0;
-    let safety = 50000;
-    let element;
-    while (count <= safety) {
-      index = Math.floor(Math.random() * this.populationSize);
-      element = this.elements[index];
-      if (Math.random() <= element.fitness / this.totalFitness) {
-        return element.dna;
-      }
-      count++;
-    }
-    console.warn("Reached safety on getParent");
-    return this.elements[index].dna;
+    console.warn("Failed fitness pool");
+    return this.elements[Math.floor(Math.random() * this.populationSize)].dna;
   }
 
   run() {

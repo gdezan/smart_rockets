@@ -8,28 +8,41 @@
     <script src="src/dna.js"></script>
     <script src="src/population.js"></script>
     <script src="src/rocket.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
     <title>Smart Rockets</title>
   </head>
   <body>
-    <div id="canvas"></div>
-    <div class="playback">
-      <button class="start-button btn">Start</button>
-      <button class="play-pause-button btn">Pause</button>
-      <button class="reset-button btn">Reset</button>
-    </div>
-    <div class="controls">
-      <div class="slider-line">
-        <div class="slider-title">
-          Number of rockets:
-          <div class="slider-value" id="elements-value">0</div>
-        </div>
-        <input type="range" min="1" max="100" class="slider" id="elements-slider" />
+    <div class="main-container">
+      <h1 class="main-title">Smart Rockets</h1>
+      <div id="canvas"></div>
+      <div class="playback">
+        <button class="control-button btn" id="play-button">
+          <img src="assets/play-icon.svg" class="control-icon light-svg" alt="Play" />
+        </button>
+        <button class="control-button btn" id="pause-button">
+          <img src="assets/pause-icon.svg" class="control-icon light-svg" alt="Pause" />
+        </button>
+        <button class="control-button btn" id="stop-button">
+          <img src="assets/stop-icon.svg" class="control-icon light-svg" alt="Stop" />
+        </button>
       </div>
-    </div>
-    <div class="info">
-      <div class="count">Frames: 0</div>
-      <div class="generation">Generation: 0</div>
-      <div class="max-fit">Maximum fitness: 0</div>
+      <div class="controls">
+        <div class="slider-line">
+          <div class="slider-title">
+            Number of rockets:
+            <div class="slider-value" id="elements-value">0</div>
+          </div>
+          <input type="range" min="1" max="100" class="slider" id="elements-slider" />
+        </div>
+      </div>
+      <div class="info">
+        <div class="count">Frames: 0</div>
+        <div class="generation">Generation: 0</div>
+        <div class="max-fit">Maximum fitness: 0</div>
+      </div>
     </div>
     <script src="src/main.js"></script>
   </body>

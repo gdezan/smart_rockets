@@ -1,9 +1,8 @@
 class DNA {
-  constructor(length, mutationRate, genes = []) {
+  constructor(length, genes = []) {
     this.genes = genes;
     this.length = length;
-    this.mag = 0.5;
-    this.mutationRate = mutationRate;
+    this.mag = 0.1;
 
     if (genes.length === 0) {
       for (let i = 0; i < length; i++) {
@@ -13,7 +12,7 @@ class DNA {
     }
   }
 
-  crossover(partner) {
+  crossover(partner, mutationRate) {
     let childGenes = [];
     let cuttingPoint = Math.floor(Math.random() * this.genes.length);
     let currGene;
@@ -23,14 +22,14 @@ class DNA {
       } else {
         currGene = partner.genes[i];
       }
-      childGenes[i] = this.mutate(currGene);
+      childGenes[i] = this.mutate(currGene, mutationRate);
     }
-    return new DNA(this.length, mutationRate, childGenes);
+    return new DNA(this.length, childGenes);
   }
 
-  mutate(gene) {
+  mutate(gene, mutationRate) {
     let retVal = gene;
-    if (Math.random() <= this.mutationRate) {
+    if (Math.random() <= mutationRate) {
       retVal = p5.Vector.random2D();
       retVal.setMag(this.mag);
     }

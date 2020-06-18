@@ -15,21 +15,44 @@
     <title>Smart Rockets</title>
   </head>
   <body>
+    <div class="main-title">
+      <h1>Smart Rockets</h1>
+    </div>
     <div class="main-container">
-      <h1 class="main-title">Smart Rockets</h1>
-      <div id="canvas"></div>
-      <div class="playback">
-        <button class="control-button btn" id="play-button">
-          <img src="assets/play-icon.svg" class="control-icon light-svg" alt="Play" />
-        </button>
-        <button class="control-button btn" id="pause-button">
-          <img src="assets/pause-icon.svg" class="control-icon light-svg" alt="Pause" />
-        </button>
-        <button class="control-button btn" id="stop-button">
-          <img src="assets/stop-icon.svg" class="control-icon light-svg" alt="Stop" />
-        </button>
+      <div class="full-canvas">
+        <div id="canvas"></div>
+        <div class="playback">
+          <button class="control-button btn" id="play-button">
+            <img src="assets/play-icon.svg" class="control-icon" alt="Play" />
+          </button>
+          <button class="control-button btn" id="pause-button">
+            <img src="assets/pause-icon.svg" class="control-icon" alt="Pause" />
+          </button>
+          <button class="control-button btn" id="stop-button">
+            <img src="assets/stop-icon.svg" class="control-icon" alt="Stop" />
+          </button>
+        </div>
+        <div class="info">
+          <div class="count">Frames: 0</div>
+          <div class="generation">Generation: 0</div>
+          <div class="max-fit">Maximum fitness: 0</div>
+        </div>
       </div>
       <div class="controls">
+        <div class="slider-line">
+          <div class="slider-title">
+            Rocket speed:
+            <div class="slider-value" id="speed-value">3</div>
+          </div>
+          <input type="range" min="1" max="20" class="slider" id="speed-slider" />
+        </div>
+        <div class="slider-line">
+          <div class="slider-title">
+            Mutation rate:
+            <div class="slider-value" id="mutation-value">5</div>
+          </div>
+          <input type="range" min="0" max="100" class="slider" id="mutation-slider" />
+        </div>
         <div class="slider-line">
           <div class="slider-title">
             Number of rockets:
@@ -37,11 +60,13 @@
           </div>
           <input type="range" min="1" max="100" class="slider" id="elements-slider" />
         </div>
-      </div>
-      <div class="info">
-        <div class="count">Frames: 0</div>
-        <div class="generation">Generation: 0</div>
-        <div class="max-fit">Maximum fitness: 0</div>
+        <div class="slider-line">
+          <div class="slider-title">
+            Generation length:
+            <div class="slider-value" id="lifespan-value">200 frames</div>
+          </div>
+          <input type="range" min="10" max="600" class="slider" id="lifespan-slider" />
+        </div>
       </div>
     </div>
     <script src="src/main.js"></script>

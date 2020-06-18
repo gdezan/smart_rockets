@@ -1,9 +1,9 @@
 class Rocket {
-  constructor(lifespan, mutationRate, dna = null) {
+  constructor(lifespan, dna = null) {
     this.position = createVector(width / 2, height - 50);
     this.velocity = createVector();
     this.acceleration = createVector();
-    this.dna = dna || new DNA(lifespan, mutationRate);
+    this.dna = dna || new DNA(lifespan);
     this.fitness = 0;
     this.count = 0;
     this.completed = -1;
@@ -17,6 +17,10 @@ class Rocket {
 
   calcFitness(target) {
     const distance = dist(this.position.x, this.position.y, target.x, target.y);
+    const distX = this.position.x - target.x;
+    const distY = this.position.y - target.y;
+    console.log(parseInt(distance), parseInt(distX), parseInt(distY));
+
     if (this.completed > 0) {
       this.fitness = Math.pow((this.lifespan - this.completed) / 50 + 1, 3) + 1;
     } else {
@@ -24,13 +28,13 @@ class Rocket {
     }
 
     if (this.crashed) {
-      this.fitness = this.fitness / 10;
+      this.fitness = this.fitness / 50;
     }
 
     return this.fitness;
   }
 
-  update(obstacles) {
+  update(rocketSpeed, obstacles) {
     if (this.completed > 0 || this.crashed) {
       return;
     }
@@ -51,7 +55,7 @@ class Rocket {
     if (px > width || px < 0 || py > height || py < 0) {
       this.crashed = true;
     }
-    this.applyForce(this.dna.genes[this.count]);
+    this.applyForce(p5.Vector.mult(this.dna.genes[this.count], rocketSpeed));
     this.count++;
 
     this.velocity.add(this.acceleration);

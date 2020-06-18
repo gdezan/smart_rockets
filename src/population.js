@@ -1,17 +1,16 @@
 class Population {
-  constructor(Element, size, lifespan, mutationRate, obstacles = []) {
+  constructor(Element, size, lifespan, obstacles = []) {
     this.Element = Element;
     this.elements = [];
     this.populationSize = size;
     this.lifespan = lifespan;
     this.maxFitness = 0;
     this.totalFitness = 0;
-    this.mutationRate = mutationRate;
     this.obstacles = obstacles;
     this.fitnessPool = [];
 
     for (let i = 0; i < this.populationSize; i++) {
-      this.elements[i] = new Element(this.lifespan, this.mutationRate);
+      this.elements[i] = new Element(this.lifespan);
     }
   }
 
@@ -29,7 +28,7 @@ class Population {
     return this.maxFitness;
   }
 
-  selection() {
+  selection(mutationRate) {
     const Element = this.Element;
     let newElements = [];
     let parentA;
@@ -38,8 +37,8 @@ class Population {
     for (let i = 0; i < this.populationSize; i++) {
       parentA = this.getParent();
       parentB = this.getParent();
-      childDNA = parentA.crossover(parentB);
-      newElements[i] = new Element(this.lifespan, this.mutationRate, childDNA);
+      childDNA = parentA.crossover(parentB, mutationRate);
+      newElements[i] = new Element(this.lifespan, childDNA);
     }
     this.elements = newElements;
   }
@@ -55,9 +54,9 @@ class Population {
     return this.elements[Math.floor(Math.random() * this.populationSize)].dna;
   }
 
-  run() {
+  run(rocketSpeed) {
     for (let i = 0; i < this.populationSize; i++) {
-      this.elements[i].update(this.obstacles);
+      this.elements[i].update(rocketSpeed, this.obstacles);
       this.elements[i].show();
     }
   }
